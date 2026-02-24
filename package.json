@@ -1,0 +1,13 @@
+{
+  "name": "cluster-bureaux",
+  "version": "1.0.0",
+  "description": "Groupe les bureaux de vote par proximité (5-6 bureaux) par code postal et visualise avec Vue + Leaflet",
+  "main": "cluster_bureaux.js",
+  "scripts": {
+    "generate": "node cluster_bureaux.js",
+    "serve": "http-server . -p 8080 -c-1"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trajets bureaux de vote</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    #app { display: flex; flex-direction: column; height: 100vh; }
+    .header { padding: 12px 16px; background: #2c3e50; color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .header h1 { margin: 0; font-size: 20px; }
+    .controls { padding: 12px 16px; background: white; border-bottom: 1px solid #ddd; display: flex; gap: 12px; align-items: center; }
+    .controls label { font-weight: 500; }
+    .controls select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+    .controls button { padding: 8px 16px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+    .controls button:hover { background: #2980b9; }
+    .main { display: flex; flex: 1; overflow: hidden; }
+    #map { flex: 2; background: #e8e8e8; }
+    .sidebar { flex: 1; overflow-y: auto; padding: 16px; background: #f8f9fa; border-left: 1px solid #ddd; }
+    .trajet-item { background: white; border: 1px solid #ddd; border-radius: 4px; padding: 12px; margin-bottom: 12px; }
+    .trajet-title { font-weight: bold; color: #2c3e50; margin-bottom: 6px; }
+    .trajet-details { font-size: 12px; color: #555; line-height: 1.5; word-break: break-word; }
+    .error { color: #e74c3c; padding: 12px; background: #fadbd8; border-radius: 4px; margin: 12px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="header">
+      <h1>📍 Trajets bureaux de vote 2026</h1>
+    </div>
+    <div class="controls">
+      <label for="cpSelect">Code postal:</label>
+      <select id="cpSelect"></select>
+      <button id="fitBtn">🔍 Zoom sur CP</button>
+    </div>
+    <div class="main">
+      <div id="map"></div>
+      <div class="sidebar" id="sidebar"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    let clustersData = null;
+    let map = null;
+    let layerGroup = null;
+    const colors = ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#a65628'];
+
+    async function loadData() {
+      try {
+        console.log('Chargement des clusters...');
+        const resp = await fetch('outputs/clusters_by_cp.json');
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        clustersData = await resp.json();
+        console.log('Clusters chargés:', Object.keys(clustersData).length, 'CP');
+        populateSelect();
+      } catch (err) {
+        console.error('Erreur:', err);
+        document.getElementById('sidebar').innerHTML = `<div class="error">Erreur: ${err.message}</div>`;
+      }
+    }
+
+    function populateSelect() {
+      const select = document.getElementById('cpSelect');
+      select.innerHTML = '';
+      const cps = Object.keys(clustersData || {}).sort();
+      cps.forEach(cp => {
+        const opt = document.createElement('option');
+        opt.value = cp;
+        opt.textContent = cp;
+        select.appendChild(opt);
+      });
+      if (cps.length > 0) {
+        select.value = cps[0];
+        showCp(cps[0]);
+      }
+    }
+
+    function showCp(cp) {
+      if (!clustersData || !clustersData[cp]) return;
+      console.log(`Affichage du CP ${cp}`);
+
+      layerGroup.clearLayers();
+      const clusters = clustersData[cp];
+      const bounds = [];
+
+      clusters.forEach((cluster, trajIdx) => {
+        const latlngs = cluster.map(pt => [pt.lat, pt.lon]);
+        latlngs.forEach(l => bounds.push(l));
+
+        const color = colors[trajIdx % colors.length];
+
+        // Polyline
+        L.polyline(latlngs, { color, weight: 3, opacity: 0.8 }).addTo(layerGroup);
+
+        // Markers
+        cluster.forEach((pt, i) => {
+          const marker = L.circleMarker([pt.lat, pt.lon], {
+            radius: 6,
+            fillColor: color,
+            color: '#fff',
+            weight: 2,
+            fillOpacity: 0.9
+          }).addTo(layerGroup);
+
+          marker.bindPopup(`<strong>${pt.lib}</strong><br>${pt.adresse}<br>Trajet ${trajIdx + 1} - Étape ${i + 1}`);
+        });
+      });
+
+      if (bounds.length) {
+        map.fitBounds(bounds, { padding: [50, 50] });
+      }
+
+      // Update sidebar
+      const sidebar = document.getElementById('sidebar');
+      sidebar.innerHTML = clusters.map((cluster, idx) => {
+        const details = cluster.map(pt => `${pt.lib} (${pt.adresse})`).join(' → ');
+        return `
+          <div class="trajet-item">
+            <div class="trajet-title">Trajet ${idx + 1}</div>
+            <div class="trajet-details">${details}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Initialisation de la carte...');
+      map = L.map('map').setView([48.8566, 2.3522], 12);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+      layerGroup = L.layerGroup().addTo(map);
+
+      document.getElementById('cpSelect').addEventListener('change', (e) => {
+        showCp(e.target.value);
+      });
+
+      document.getElementById('fitBtn').addEventListener('click', () => {
+        showCp(document.getElementById('cpSelect').value);
+      });
+
+      loadData();
+    });
+  </script>
+</body>
+</html>
