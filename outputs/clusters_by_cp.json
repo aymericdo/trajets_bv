@@ -220,7 +220,9 @@
         "cp": "75003",
         "lat": 48.866192510593486,
         "lon": 2.358843350956116
-      },
+      }
+    ],
+    [
       {
         "objectid": 25,
         "id_bv": "3-25",
@@ -326,7 +328,9 @@
         "cp": "75004",
         "lat": 48.85505968451521,
         "lon": 2.356278387572588
-      },
+      }
+    ],
+    [
       {
         "objectid": 36,
         "id_bv": "4-36",
@@ -336,16 +340,6 @@
         "cp": "75004",
         "lat": 48.85620004855222,
         "lon": 2.3556811148272825
-      },
-      {
-        "objectid": 41,
-        "id_bv": "4-41",
-        "num_bv": "0041",
-        "lib": "LYCEE PROFESSIONNEL THEOPHILE GAUTIER",
-        "adresse": "6BIS PLACE DES VOSGES",
-        "cp": "75004",
-        "lat": 48.85480003628365,
-        "lon": 2.366255676474799
       },
       {
         "objectid": 47,
@@ -379,6 +373,16 @@
       }
     ],
     [
+      {
+        "objectid": 41,
+        "id_bv": "4-41",
+        "num_bv": "0041",
+        "lib": "LYCEE PROFESSIONNEL THEOPHILE GAUTIER",
+        "adresse": "6BIS PLACE DES VOSGES",
+        "cp": "75004",
+        "lat": 48.85480003628365,
+        "lon": 2.366255676474799
+      },
       {
         "objectid": 42,
         "id_bv": "4-42",
@@ -892,6 +896,16 @@
         "cp": "75007",
         "lat": 48.85120383339608,
         "lon": 2.319164370244829
+      },
+      {
+        "objectid": 100,
+        "id_bv": "7-3",
+        "num_bv": "0003",
+        "lib": "LYCEE VICTOR DURUY",
+        "adresse": "33 BOULEVARD DES INVALIDES",
+        "cp": "75007",
+        "lat": 48.85230001416875,
+        "lon": 2.31484794519197
       }
     ],
     [
@@ -924,16 +938,6 @@
         "cp": "75007",
         "lat": 48.85691248957069,
         "lon": 2.3090800630089046
-      },
-      {
-        "objectid": 100,
-        "id_bv": "7-3",
-        "num_bv": "0003",
-        "lib": "LYCEE VICTOR DURUY",
-        "adresse": "33 BOULEVARD DES INVALIDES",
-        "cp": "75007",
-        "lat": 48.85230001416875,
-        "lon": 2.31484794519197
       },
       {
         "objectid": 117,
@@ -1398,7 +1402,9 @@
         "cp": "75010",
         "lat": 48.8747507826777,
         "lon": 2.3604856285823996
-      },
+      }
+    ],
+    [
       {
         "objectid": 178,
         "id_bv": "10-11",
@@ -1408,9 +1414,7 @@
         "cp": "75010",
         "lat": 48.871696281004404,
         "lon": 2.3696028482640017
-      }
-    ],
-    [
+      },
       {
         "objectid": 181,
         "id_bv": "10-14",
@@ -1470,6 +1474,16 @@
         "cp": "75010",
         "lat": 48.87683463906201,
         "lon": 2.3678866239233027
+      },
+      {
+        "objectid": 185,
+        "id_bv": "10-18",
+        "num_bv": "0018",
+        "lib": "CENTRE ANIMATION GRANGE AUX BELLES",
+        "adresse": "6 RUE BOY ZELENSKI",
+        "cp": "75010",
+        "lat": 48.87698187674093,
+        "lon": 2.368277745870351
       }
     ],
     [
@@ -1482,16 +1496,6 @@
         "cp": "75010",
         "lat": 48.87833744843906,
         "lon": 2.364774028762828
-      },
-      {
-        "objectid": 185,
-        "id_bv": "10-18",
-        "num_bv": "0018",
-        "lib": "CENTRE ANIMATION GRANGE AUX BELLES",
-        "adresse": "6 RUE BOY ZELENSKI",
-        "cp": "75010",
-        "lat": 48.87698187674093,
-        "lon": 2.368277745870351
       },
       {
         "objectid": 188,
@@ -1532,6 +1536,26 @@
         "cp": "75010",
         "lat": 48.88247900722094,
         "lon": 2.363923023973593
+      },
+      {
+        "objectid": 191,
+        "id_bv": "10-24",
+        "num_bv": "0024",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "49BIS RUE LOUIS BLANC",
+        "cp": "75010",
+        "lat": 48.88240948116979,
+        "lon": 2.362516253599599
+      },
+      {
+        "objectid": 194,
+        "id_bv": "10-27",
+        "num_bv": "0027",
+        "lib": "GYMNASE CHATEAU LANDON",
+        "adresse": "46 RUE DU CHATEAU LANDON",
+        "cp": "75010",
+        "lat": 48.8830623135182,
+        "lon": 2.3639196096239097
       }
     ],
     [
@@ -1626,28 +1650,6 @@
         "cp": "75010",
         "lat": 48.87147327249308,
         "lon": 2.3579813011148616
-      }
-    ],
-    [
-      {
-        "objectid": 191,
-        "id_bv": "10-24",
-        "num_bv": "0024",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "49BIS RUE LOUIS BLANC",
-        "cp": "75010",
-        "lat": 48.88240948116979,
-        "lon": 2.362516253599599
-      },
-      {
-        "objectid": 194,
-        "id_bv": "10-27",
-        "num_bv": "0027",
-        "lib": "GYMNASE CHATEAU LANDON",
-        "adresse": "46 RUE DU CHATEAU LANDON",
-        "cp": "75010",
-        "lat": 48.8830623135182,
-        "lon": 2.3639196096239097
       }
     ]
   ],
@@ -1798,16 +1800,6 @@
         "lon": 2.379520865957035
       },
       {
-        "objectid": 210,
-        "id_bv": "11-4",
-        "num_bv": "0004",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "35 RUE GODEFROY CAVAIGNAC",
-        "cp": "75011",
-        "lat": 48.856080766436534,
-        "lon": 2.380494282678489
-      },
-      {
         "objectid": 208,
         "id_bv": "11-2",
         "num_bv": "0002",
@@ -1826,6 +1818,16 @@
         "cp": "75011",
         "lat": 48.85737906077341,
         "lon": 2.377318738012324
+      },
+      {
+        "objectid": 210,
+        "id_bv": "11-4",
+        "num_bv": "0004",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "35 RUE GODEFROY CAVAIGNAC",
+        "cp": "75011",
+        "lat": 48.856080766436534,
+        "lon": 2.380494282678489
       }
     ],
     [
@@ -2448,36 +2450,6 @@
         "cp": "75013",
         "lat": 48.82817384005207,
         "lon": 2.367210842509875
-      },
-      {
-        "objectid": 357,
-        "id_bv": "13-32",
-        "num_bv": "0032",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "60 RUE DUNOIS",
-        "cp": "75013",
-        "lat": 48.83262567466254,
-        "lon": 2.367091671456509
-      },
-      {
-        "objectid": 355,
-        "id_bv": "13-30",
-        "num_bv": "0030",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "63 RUE DUNOIS",
-        "cp": "75013",
-        "lat": 48.832619050339986,
-        "lon": 2.3667765573912956
-      },
-      {
-        "objectid": 356,
-        "id_bv": "13-31",
-        "num_bv": "0031",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "64 RUE DUNOIS",
-        "cp": "75013",
-        "lat": 48.832747845312014,
-        "lon": 2.366908888435585
       }
     ],
     [
@@ -2864,6 +2836,36 @@
     ],
     [
       {
+        "objectid": 357,
+        "id_bv": "13-32",
+        "num_bv": "0032",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "60 RUE DUNOIS",
+        "cp": "75013",
+        "lat": 48.83262567466254,
+        "lon": 2.367091671456509
+      },
+      {
+        "objectid": 355,
+        "id_bv": "13-30",
+        "num_bv": "0030",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "63 RUE DUNOIS",
+        "cp": "75013",
+        "lat": 48.832619050339986,
+        "lon": 2.3667765573912956
+      },
+      {
+        "objectid": 356,
+        "id_bv": "13-31",
+        "num_bv": "0031",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "64 RUE DUNOIS",
+        "cp": "75013",
+        "lat": 48.832747845312014,
+        "lon": 2.366908888435585
+      },
+      {
         "objectid": 334,
         "id_bv": "13-9",
         "num_bv": "0009",
@@ -2882,7 +2884,9 @@
         "cp": "75013",
         "lat": 48.83038656423299,
         "lon": 2.361806292991882
-      },
+      }
+    ],
+    [
       {
         "objectid": 352,
         "id_bv": "13-27",
@@ -2892,9 +2896,7 @@
         "cp": "75013",
         "lat": 48.830270390844206,
         "lon": 2.3730038519738987
-      }
-    ],
-    [
+      },
       {
         "objectid": 358,
         "id_bv": "13-33",
@@ -3096,16 +3098,6 @@
         "lon": 2.3230557297828405
       },
       {
-        "objectid": 412,
-        "id_bv": "14-15",
-        "num_bv": "0015",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "71 RUE DE L OUEST",
-        "cp": "75014",
-        "lat": 48.835586353593285,
-        "lon": 2.318447361787838
-      },
-      {
         "objectid": 416,
         "id_bv": "14-19",
         "num_bv": "0019",
@@ -3114,38 +3106,6 @@
         "cp": "75014",
         "lat": 48.832450256488414,
         "lon": 2.323527360828787
-      }
-    ],
-    [
-      {
-        "objectid": 417,
-        "id_bv": "14-20",
-        "num_bv": "0020",
-        "lib": "COLLEGE GIACOMETTI",
-        "adresse": "7 RUE DU CANGE",
-        "cp": "75014",
-        "lat": 48.83426455656547,
-        "lon": 2.314971561733429
-      },
-      {
-        "objectid": 411,
-        "id_bv": "14-14",
-        "num_bv": "0014",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "1 IMPASSE LEBOUIS",
-        "cp": "75014",
-        "lat": 48.83680604054008,
-        "lon": 2.321719014925194
-      },
-      {
-        "objectid": 426,
-        "id_bv": "14-29",
-        "num_bv": "0029",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "13 RUE DE L OUEST",
-        "cp": "75014",
-        "lat": 48.83719804310886,
-        "lon": 2.3219948138446314
       },
       {
         "objectid": 399,
@@ -3176,6 +3136,58 @@
         "cp": "75014",
         "lat": 48.832662577708895,
         "lon": 2.3278361902043443
+      },
+      {
+        "objectid": 425,
+        "id_bv": "14-28",
+        "num_bv": "0028",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "23 RUE BOULARD",
+        "cp": "75014",
+        "lat": 48.83373670424387,
+        "lon": 2.328935229983032
+      }
+    ],
+    [
+      {
+        "objectid": 417,
+        "id_bv": "14-20",
+        "num_bv": "0020",
+        "lib": "COLLEGE GIACOMETTI",
+        "adresse": "7 RUE DU CANGE",
+        "cp": "75014",
+        "lat": 48.83426455656547,
+        "lon": 2.314971561733429
+      },
+      {
+        "objectid": 411,
+        "id_bv": "14-14",
+        "num_bv": "0014",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "1 IMPASSE LEBOUIS",
+        "cp": "75014",
+        "lat": 48.83680604054008,
+        "lon": 2.321719014925194
+      },
+      {
+        "objectid": 412,
+        "id_bv": "14-15",
+        "num_bv": "0015",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "71 RUE DE L OUEST",
+        "cp": "75014",
+        "lat": 48.835586353593285,
+        "lon": 2.318447361787838
+      },
+      {
+        "objectid": 426,
+        "id_bv": "14-29",
+        "num_bv": "0029",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "13 RUE DE L OUEST",
+        "cp": "75014",
+        "lat": 48.83719804310886,
+        "lon": 2.3219948138446314
       }
     ],
     [
@@ -3210,6 +3222,38 @@
         "lon": 2.3339874491430166
       },
       {
+        "objectid": 438,
+        "id_bv": "14-41",
+        "num_bv": "0041",
+        "lib": "ECOLE POLYVALENTE",
+        "adresse": "13 AVENUE DE LA SIBELLE",
+        "cp": "75014",
+        "lat": 48.825976521886695,
+        "lon": 2.338465797142314
+      }
+    ],
+    [
+      {
+        "objectid": 455,
+        "id_bv": "14-58",
+        "num_bv": "0058",
+        "lib": "STADE ELISABETH",
+        "adresse": "9 AVENUE PAUL APPELL",
+        "cp": "75014",
+        "lat": 48.821250178249954,
+        "lon": 2.328228878235449
+      },
+      {
+        "objectid": 409,
+        "id_bv": "14-12",
+        "num_bv": "0012",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "53 RUE SARRETTE",
+        "cp": "75014",
+        "lat": 48.82517474977621,
+        "lon": 2.327125624457123
+      },
+      {
         "objectid": 404,
         "id_bv": "14-7",
         "num_bv": "0007",
@@ -3238,28 +3282,6 @@
         "cp": "75014",
         "lat": 48.82511886096063,
         "lon": 2.328290185843789
-      }
-    ],
-    [
-      {
-        "objectid": 455,
-        "id_bv": "14-58",
-        "num_bv": "0058",
-        "lib": "STADE ELISABETH",
-        "adresse": "9 AVENUE PAUL APPELL",
-        "cp": "75014",
-        "lat": 48.821250178249954,
-        "lon": 2.328228878235449
-      },
-      {
-        "objectid": 409,
-        "id_bv": "14-12",
-        "num_bv": "0012",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "53 RUE SARRETTE",
-        "cp": "75014",
-        "lat": 48.82517474977621,
-        "lon": 2.327125624457123
       },
       {
         "objectid": 406,
@@ -3270,16 +3292,6 @@
         "cp": "75014",
         "lat": 48.828012413000856,
         "lon": 2.3259094061650027
-      },
-      {
-        "objectid": 438,
-        "id_bv": "14-41",
-        "num_bv": "0041",
-        "lib": "ECOLE POLYVALENTE",
-        "adresse": "13 AVENUE DE LA SIBELLE",
-        "cp": "75014",
-        "lat": 48.825976521886695,
-        "lon": 2.338465797142314
       }
     ],
     [
@@ -3376,16 +3388,6 @@
         "cp": "75014",
         "lat": 48.841598297972745,
         "lon": 2.326808867455468
-      },
-      {
-        "objectid": 425,
-        "id_bv": "14-28",
-        "num_bv": "0028",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "23 RUE BOULARD",
-        "cp": "75014",
-        "lat": 48.83373670424387,
-        "lon": 2.328935229983032
       }
     ]
   ],
@@ -3450,6 +3452,48 @@
         "cp": "75015",
         "lat": 48.85056484062678,
         "lon": 2.2881029147041327
+      }
+    ],
+    [
+      {
+        "objectid": 533,
+        "id_bv": "15-78",
+        "num_bv": "0078",
+        "lib": "COLLEGE ANDRE CITROEN",
+        "adresse": "208 RUE SAINT CHARLES",
+        "cp": "75015",
+        "lat": 48.838859572623086,
+        "lon": 2.2785902660308475
+      },
+      {
+        "objectid": 532,
+        "id_bv": "15-77",
+        "num_bv": "0077",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "95 RUE BALARD",
+        "cp": "75015",
+        "lat": 48.83778758881019,
+        "lon": 2.278654952235176
+      },
+      {
+        "objectid": 530,
+        "id_bv": "15-75",
+        "num_bv": "0075",
+        "lib": "ANNEXE CITROËN",
+        "adresse": "97 RUE BALARD",
+        "cp": "75015",
+        "lat": 48.8375416334125,
+        "lon": 2.2787016218441
+      },
+      {
+        "objectid": 529,
+        "id_bv": "15-74",
+        "num_bv": "0074",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "146 AVENUE FELIX FAURE",
+        "cp": "75015",
+        "lat": 48.837356530584856,
+        "lon": 2.279313380243616
       },
       {
         "objectid": 531,
@@ -3574,69 +3618,9 @@
         "cp": "75015",
         "lat": 48.84299080040882,
         "lon": 2.296984030717407
-      },
-      {
-        "objectid": 512,
-        "id_bv": "15-57",
-        "num_bv": "0057",
-        "lib": "ECOLE POLYVALENTE",
-        "adresse": "28 RUE DOMBASLE",
-        "cp": "75015",
-        "lat": 48.83588104254159,
-        "lon": 2.298207099563797
-      },
-      {
-        "objectid": 509,
-        "id_bv": "15-54",
-        "num_bv": "0054",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "27 RUE OLIVIER DE SERRES",
-        "cp": "75015",
-        "lat": 48.83561984286648,
-        "lon": 2.2968603794107696
       }
     ],
     [
-      {
-        "objectid": 533,
-        "id_bv": "15-78",
-        "num_bv": "0078",
-        "lib": "COLLEGE ANDRE CITROEN",
-        "adresse": "208 RUE SAINT CHARLES",
-        "cp": "75015",
-        "lat": 48.838859572623086,
-        "lon": 2.2785902660308475
-      },
-      {
-        "objectid": 532,
-        "id_bv": "15-77",
-        "num_bv": "0077",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "95 RUE BALARD",
-        "cp": "75015",
-        "lat": 48.83778758881019,
-        "lon": 2.278654952235176
-      },
-      {
-        "objectid": 530,
-        "id_bv": "15-75",
-        "num_bv": "0075",
-        "lib": "ANNEXE CITROËN",
-        "adresse": "97 RUE BALARD",
-        "cp": "75015",
-        "lat": 48.8375416334125,
-        "lon": 2.2787016218441
-      },
-      {
-        "objectid": 529,
-        "id_bv": "15-74",
-        "num_bv": "0074",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "146 AVENUE FELIX FAURE",
-        "cp": "75015",
-        "lat": 48.837356530584856,
-        "lon": 2.279313380243616
-      },
       {
         "objectid": 535,
         "id_bv": "15-80",
@@ -3698,26 +3682,6 @@
         "cp": "75015",
         "lat": 48.84235824953675,
         "lon": 2.284876342397207
-      },
-      {
-        "objectid": 541,
-        "id_bv": "15-86",
-        "num_bv": "0086",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "56 AVENUE FELIX FAURE",
-        "cp": "75015",
-        "lat": 48.840698669248965,
-        "lon": 2.286615493063101
-      },
-      {
-        "objectid": 543,
-        "id_bv": "15-88",
-        "num_bv": "0088",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "10 RUE FRANCOIS COPPEE",
-        "cp": "75015",
-        "lat": 48.83992700637122,
-        "lon": 2.2875977648548247
       }
     ],
     [
@@ -3752,6 +3716,26 @@
         "lon": 2.2965269994893918
       },
       {
+        "objectid": 509,
+        "id_bv": "15-54",
+        "num_bv": "0054",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "27 RUE OLIVIER DE SERRES",
+        "cp": "75015",
+        "lat": 48.83561984286648,
+        "lon": 2.2968603794107696
+      },
+      {
+        "objectid": 512,
+        "id_bv": "15-57",
+        "num_bv": "0057",
+        "lib": "ECOLE POLYVALENTE",
+        "adresse": "28 RUE DOMBASLE",
+        "cp": "75015",
+        "lat": 48.83588104254159,
+        "lon": 2.298207099563797
+      },
+      {
         "objectid": 525,
         "id_bv": "15-70",
         "num_bv": "0070",
@@ -3760,26 +3744,6 @@
         "cp": "75015",
         "lat": 48.834016537697295,
         "lon": 2.2906916147018115
-      },
-      {
-        "objectid": 523,
-        "id_bv": "15-68",
-        "num_bv": "0068",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "2 RUE THEODORE DECK",
-        "cp": "75015",
-        "lat": 48.8376584846364,
-        "lon": 2.2907382643145504
-      },
-      {
-        "objectid": 524,
-        "id_bv": "15-69",
-        "num_bv": "0069",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "10 RUE SAINT LAMBERT",
-        "cp": "75015",
-        "lat": 48.83812666916058,
-        "lon": 2.2909042361283993
       }
     ],
     [
@@ -3792,6 +3756,26 @@
         "cp": "75015",
         "lat": 48.83729055347667,
         "lon": 2.2855579258810663
+      },
+      {
+        "objectid": 541,
+        "id_bv": "15-86",
+        "num_bv": "0086",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "56 AVENUE FELIX FAURE",
+        "cp": "75015",
+        "lat": 48.840698669248965,
+        "lon": 2.286615493063101
+      },
+      {
+        "objectid": 543,
+        "id_bv": "15-88",
+        "num_bv": "0088",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "10 RUE FRANCOIS COPPEE",
+        "cp": "75015",
+        "lat": 48.83992700637122,
+        "lon": 2.2875977648548247
       },
       {
         "objectid": 544,
@@ -3812,6 +3796,26 @@
         "cp": "75015",
         "lat": 48.8382541649622,
         "lon": 2.2907396317152604
+      },
+      {
+        "objectid": 523,
+        "id_bv": "15-68",
+        "num_bv": "0068",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "2 RUE THEODORE DECK",
+        "cp": "75015",
+        "lat": 48.8376584846364,
+        "lon": 2.2907382643145504
+      },
+      {
+        "objectid": 524,
+        "id_bv": "15-69",
+        "num_bv": "0069",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "10 RUE SAINT LAMBERT",
+        "cp": "75015",
+        "lat": 48.83812666916058,
+        "lon": 2.2909042361283993
       }
     ],
     [
@@ -4074,16 +4078,6 @@
         "cp": "75016",
         "lat": 48.86260602908071,
         "lon": 2.277838764505605
-      },
-      {
-        "objectid": 561,
-        "id_bv": "16-11",
-        "num_bv": "0011",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "15 RUE DES BAUCHES",
-        "cp": "75016",
-        "lat": 48.85598013869024,
-        "lon": 2.2735649065570858
       }
     ],
     [
@@ -4116,6 +4110,16 @@
         "cp": "75016",
         "lat": 48.855739969861396,
         "lon": 2.2728073582272743
+      },
+      {
+        "objectid": 561,
+        "id_bv": "16-11",
+        "num_bv": "0011",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "15 RUE DES BAUCHES",
+        "cp": "75016",
+        "lat": 48.85598013869024,
+        "lon": 2.2735649065570858
       },
       {
         "objectid": 578,
@@ -4294,14 +4298,24 @@
         "lon": 2.2876030999027503
       },
       {
-        "objectid": 611,
-        "id_bv": "16-62",
-        "num_bv": "0062",
+        "objectid": 903,
+        "id_bv": "16-68",
+        "num_bv": "0068",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "56 RUE BOISSIERE",
+        "cp": "75116",
+        "lat": 48.868147079920114,
+        "lon": 2.2878880022459445
+      },
+      {
+        "objectid": 902,
+        "id_bv": "16-61",
+        "num_bv": "0061",
         "lib": "ECOLE ELEMENTAIRE",
         "adresse": "54 RUE BOISSIERE",
-        "cp": "75016",
-        "lat": 48.86804861285095,
-        "lon": 2.28804414291316
+        "cp": "75116",
+        "lat": 48.86804861289959,
+        "lon": 2.288044151091974
       },
       {
         "objectid": 616,
@@ -4438,16 +4452,6 @@
         "cp": "75017",
         "lat": 48.88354987789065,
         "lon": 2.2901141401324487
-      },
-      {
-        "objectid": 639,
-        "id_bv": "17-23",
-        "num_bv": "0023",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "12 PASSAGE SAINT ANGE",
-        "cp": "75017",
-        "lat": 48.896558690521466,
-        "lon": 2.3274934308047
       }
     ],
     [
@@ -4500,16 +4504,6 @@
         "cp": "75017",
         "lat": 48.88967602134764,
         "lon": 2.3198273818827255
-      },
-      {
-        "objectid": 620,
-        "id_bv": "17-4",
-        "num_bv": "0004",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "15 RUE TRUFFAUT",
-        "cp": "75017",
-        "lat": 48.884930243222385,
-        "lon": 2.3225402426965465
       }
     ],
     [
@@ -4575,6 +4569,16 @@
       }
     ],
     [
+      {
+        "objectid": 620,
+        "id_bv": "17-4",
+        "num_bv": "0004",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "15 RUE TRUFFAUT",
+        "cp": "75017",
+        "lat": 48.884930243222385,
+        "lon": 2.3225402426965465
+      },
       {
         "objectid": 617,
         "id_bv": "17-1",
@@ -4708,6 +4712,16 @@
         "cp": "75017",
         "lat": 48.89647898099358,
         "lon": 2.324907367489849
+      },
+      {
+        "objectid": 639,
+        "id_bv": "17-23",
+        "num_bv": "0023",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "12 PASSAGE SAINT ANGE",
+        "cp": "75017",
+        "lat": 48.896558690521466,
+        "lon": 2.3274934308047
       },
       {
         "objectid": 641,
@@ -4890,16 +4904,6 @@
     ],
     [
       {
-        "objectid": 723,
-        "id_bv": "18-38",
-        "num_bv": "0038",
-        "lib": "ÉCOLE MATERNELLE RUISSEAU",
-        "adresse": "6 RUE DU RUISSEAU",
-        "cp": "75018",
-        "lat": 48.89170778656759,
-        "lon": 2.3398851350177567
-      },
-      {
         "objectid": 689,
         "id_bv": "18-4",
         "num_bv": "0004",
@@ -4908,26 +4912,6 @@
         "cp": "75018",
         "lat": 48.89207701277022,
         "lon": 2.3439649798675704
-      },
-      {
-        "objectid": 720,
-        "id_bv": "18-35",
-        "num_bv": "0035",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "4 SQUARE LAMARCK",
-        "cp": "75018",
-        "lat": 48.89077288743593,
-        "lon": 2.335810572389457
-      },
-      {
-        "objectid": 724,
-        "id_bv": "18-39",
-        "num_bv": "0039",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "67 RUE DAMREMONT",
-        "cp": "75018",
-        "lat": 48.89237870104982,
-        "lon": 2.3353586926535135
       },
       {
         "objectid": 691,
@@ -4940,6 +4924,26 @@
         "lon": 2.344513080958964
       },
       {
+        "objectid": 723,
+        "id_bv": "18-38",
+        "num_bv": "0038",
+        "lib": "ÉCOLE MATERNELLE RUISSEAU",
+        "adresse": "6 RUE DU RUISSEAU",
+        "cp": "75018",
+        "lat": 48.89170778656759,
+        "lon": 2.3398851350177567
+      },
+      {
+        "objectid": 720,
+        "id_bv": "18-35",
+        "num_bv": "0035",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "4 SQUARE LAMARCK",
+        "cp": "75018",
+        "lat": 48.89077288743593,
+        "lon": 2.335810572389457
+      },
+      {
         "objectid": 722,
         "id_bv": "18-37",
         "num_bv": "0037",
@@ -4948,19 +4952,19 @@
         "cp": "75018",
         "lat": 48.89195637087869,
         "lon": 2.335058910784301
+      },
+      {
+        "objectid": 724,
+        "id_bv": "18-39",
+        "num_bv": "0039",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "67 RUE DAMREMONT",
+        "cp": "75018",
+        "lat": 48.89237870104982,
+        "lon": 2.3353586926535135
       }
     ],
     [
-      {
-        "objectid": 686,
-        "id_bv": "18-1",
-        "num_bv": "0001",
-        "lib": "MAIRIE D'ARRONDISSEMENT",
-        "adresse": "1 PLACE JULES JOFFRIN",
-        "cp": "75018",
-        "lat": 48.89230356234002,
-        "lon": 2.3446872115428143
-      },
       {
         "objectid": 751,
         "id_bv": "18-66",
@@ -4980,6 +4984,16 @@
         "cp": "75018",
         "lat": 48.891261958133626,
         "lon": 2.345648612361481
+      },
+      {
+        "objectid": 686,
+        "id_bv": "18-1",
+        "num_bv": "0001",
+        "lib": "MAIRIE D'ARRONDISSEMENT",
+        "adresse": "1 PLACE JULES JOFFRIN",
+        "cp": "75018",
+        "lat": 48.89230356234002,
+        "lon": 2.3446872115428143
       },
       {
         "objectid": 694,
@@ -5348,26 +5362,6 @@
         "lon": 2.3787042996118117
       },
       {
-        "objectid": 759,
-        "id_bv": "19-6",
-        "num_bv": "0006",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "8 RUE SADI LECOINTE",
-        "cp": "75019",
-        "lat": 48.880353943142275,
-        "lon": 2.3738821937964603
-      },
-      {
-        "objectid": 761,
-        "id_bv": "19-8",
-        "num_bv": "0008",
-        "lib": "ECOLE ELEMENTAIRE A",
-        "adresse": "119 AVENUE SIMON BOLIVAR",
-        "cp": "75019",
-        "lat": 48.87983801855386,
-        "lon": 2.374187395431406
-      },
-      {
         "objectid": 754,
         "id_bv": "19-1",
         "num_bv": "0001",
@@ -5386,6 +5380,36 @@
         "cp": "75019",
         "lat": 48.88597556355316,
         "lon": 2.378992973809402
+      },
+      {
+        "objectid": 811,
+        "id_bv": "19-58",
+        "num_bv": "0058",
+        "lib": "ECOLE ELEMENTAIRE B",
+        "adresse": "9 RUE PIERRE GIRARD",
+        "cp": "75019",
+        "lat": 48.885909382115294,
+        "lon": 2.37960376820229
+      },
+      {
+        "objectid": 813,
+        "id_bv": "19-60",
+        "num_bv": "0060",
+        "lib": "ECOLE ELEMENTAIRE A",
+        "adresse": "9 RUE TANDOU",
+        "cp": "75019",
+        "lat": 48.88604531177388,
+        "lon": 2.3792573185699353
+      },
+      {
+        "objectid": 822,
+        "id_bv": "19-69",
+        "num_bv": "0069",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "22 RUE TANDOU",
+        "cp": "75019",
+        "lat": 48.8864681806719,
+        "lon": 2.380622498471175
       }
     ],
     [
@@ -5458,6 +5482,26 @@
         "cp": "75019",
         "lat": 48.87620484926753,
         "lon": 2.3886273974177894
+      },
+      {
+        "objectid": 785,
+        "id_bv": "19-32",
+        "num_bv": "0032",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "10 COURS DU SEPTIEME ART",
+        "cp": "75019",
+        "lat": 48.87819562146909,
+        "lon": 2.3871858346239905
+      },
+      {
+        "objectid": 769,
+        "id_bv": "19-16",
+        "num_bv": "0016",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "61 RUE DE LA VILLETTE",
+        "cp": "75019",
+        "lat": 48.8784177994014,
+        "lon": 2.3880819954876773
       }
     ],
     [
@@ -5510,16 +5554,6 @@
         "cp": "75019",
         "lat": 48.88468263470722,
         "lon": 2.3908932428305016
-      },
-      {
-        "objectid": 781,
-        "id_bv": "19-28",
-        "num_bv": "0028",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "106 RUE COMPANS",
-        "cp": "75019",
-        "lat": 48.88038554117315,
-        "lon": 2.3897814184998536
       }
     ],
     [
@@ -5686,26 +5720,6 @@
         "cp": "75019",
         "lat": 48.89194768065174,
         "lon": 2.369369682281873
-      },
-      {
-        "objectid": 813,
-        "id_bv": "19-60",
-        "num_bv": "0060",
-        "lib": "ECOLE ELEMENTAIRE A",
-        "adresse": "9 RUE TANDOU",
-        "cp": "75019",
-        "lat": 48.88604531177388,
-        "lon": 2.3792573185699353
-      },
-      {
-        "objectid": 819,
-        "id_bv": "19-66",
-        "num_bv": "0066",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "2 RUE JOMARD",
-        "cp": "75019",
-        "lat": 48.88941123180024,
-        "lon": 2.3792923759846705
       }
     ],
     [
@@ -5720,46 +5734,24 @@
         "lon": 2.3713557890208867
       },
       {
-        "objectid": 811,
-        "id_bv": "19-58",
-        "num_bv": "0058",
-        "lib": "ECOLE ELEMENTAIRE B",
-        "adresse": "9 RUE PIERRE GIRARD",
+        "objectid": 759,
+        "id_bv": "19-6",
+        "num_bv": "0006",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "8 RUE SADI LECOINTE",
         "cp": "75019",
-        "lat": 48.885909382115294,
-        "lon": 2.37960376820229
+        "lat": 48.880353943142275,
+        "lon": 2.3738821937964603
       },
       {
-        "objectid": 822,
-        "id_bv": "19-69",
-        "num_bv": "0069",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "22 RUE TANDOU",
+        "objectid": 761,
+        "id_bv": "19-8",
+        "num_bv": "0008",
+        "lib": "ECOLE ELEMENTAIRE A",
+        "adresse": "119 AVENUE SIMON BOLIVAR",
         "cp": "75019",
-        "lat": 48.8864681806719,
-        "lon": 2.380622498471175
-      }
-    ],
-    [
-      {
-        "objectid": 785,
-        "id_bv": "19-32",
-        "num_bv": "0032",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "10 COURS DU SEPTIEME ART",
-        "cp": "75019",
-        "lat": 48.87819562146909,
-        "lon": 2.3871858346239905
-      },
-      {
-        "objectid": 769,
-        "id_bv": "19-16",
-        "num_bv": "0016",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "61 RUE DE LA VILLETTE",
-        "cp": "75019",
-        "lat": 48.8784177994014,
-        "lon": 2.3880819954876773
+        "lat": 48.87983801855386,
+        "lon": 2.374187395431406
       }
     ],
     [
@@ -5792,6 +5784,16 @@
         "cp": "75019",
         "lat": 48.88957594555664,
         "lon": 2.379308212648863
+      },
+      {
+        "objectid": 819,
+        "id_bv": "19-66",
+        "num_bv": "0066",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "2 RUE JOMARD",
+        "cp": "75019",
+        "lat": 48.88941123180024,
+        "lon": 2.3792923759846705
       }
     ],
     [
@@ -5866,6 +5868,16 @@
         "cp": "75019",
         "lat": 48.88026542561271,
         "lon": 2.390258805512491
+      },
+      {
+        "objectid": 781,
+        "id_bv": "19-28",
+        "num_bv": "0028",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "106 RUE COMPANS",
+        "cp": "75019",
+        "lat": 48.88038554117315,
+        "lon": 2.3897814184998536
       }
     ]
   ],
@@ -5920,16 +5932,6 @@
         "cp": "75020",
         "lat": 48.87130438662381,
         "lon": 2.3985487668504386
-      },
-      {
-        "objectid": 832,
-        "id_bv": "20-7",
-        "num_bv": "0007",
-        "lib": "ECOLE ELEMENTAIRE - REFECTOIRE",
-        "adresse": "1 VILLA SOUCHET",
-        "cp": "75020",
-        "lat": 48.867358582717294,
-        "lon": 2.400102000817047
       }
     ],
     [
@@ -6118,6 +6120,16 @@
         "lon": 2.407068203442939
       },
       {
+        "objectid": 879,
+        "id_bv": "20-54",
+        "num_bv": "0054",
+        "lib": "ECOLE POLYVALENTE",
+        "adresse": "51 BOULEVARD DAVOUT",
+        "cp": "75020",
+        "lat": 48.851328940766685,
+        "lon": 2.410732833499771
+      },
+      {
         "objectid": 880,
         "id_bv": "20-55",
         "num_bv": "0055",
@@ -6178,16 +6190,6 @@
         "cp": "75020",
         "lat": 48.84887742972216,
         "lon": 2.407294555473814
-      },
-      {
-        "objectid": 879,
-        "id_bv": "20-54",
-        "num_bv": "0054",
-        "lib": "ECOLE POLYVALENTE",
-        "adresse": "51 BOULEVARD DAVOUT",
-        "cp": "75020",
-        "lat": 48.851328940766685,
-        "lon": 2.410732833499771
       }
     ],
     [
@@ -6222,6 +6224,16 @@
         "lon": 2.3999711395521675
       },
       {
+        "objectid": 832,
+        "id_bv": "20-7",
+        "num_bv": "0007",
+        "lib": "ECOLE ELEMENTAIRE - REFECTOIRE",
+        "adresse": "1 VILLA SOUCHET",
+        "cp": "75020",
+        "lat": 48.867358582717294,
+        "lon": 2.400102000817047
+      },
+      {
         "objectid": 827,
         "id_bv": "20-2",
         "num_bv": "0002",
@@ -6230,26 +6242,6 @@
         "cp": "75020",
         "lat": 48.862292816115605,
         "lon": 2.399417734196324
-      },
-      {
-        "objectid": 885,
-        "id_bv": "20-60",
-        "num_bv": "0060",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "9 RUE VILLIERS DE L ISLE ADAM",
-        "cp": "75020",
-        "lat": 48.86574407986279,
-        "lon": 2.3940498455723738
-      },
-      {
-        "objectid": 892,
-        "id_bv": "20-67",
-        "num_bv": "0067",
-        "lib": "GYMNASE BIDASSOA",
-        "adresse": "25 RUE DE LA BIDASSOA",
-        "cp": "75020",
-        "lat": 48.8664483736743,
-        "lon": 2.393189147058346
       }
     ],
     [
@@ -6312,9 +6304,39 @@
         "cp": "75020",
         "lat": 48.87377192154725,
         "lon": 2.3980230712290687
+      },
+      {
+        "objectid": 841,
+        "id_bv": "20-16",
+        "num_bv": "0016",
+        "lib": "ECOLE POLYVALENTE",
+        "adresse": "166 RUE PELLEPORT",
+        "cp": "75020",
+        "lat": 48.87336492903246,
+        "lon": 2.3979874548712226
       }
     ],
     [
+      {
+        "objectid": 885,
+        "id_bv": "20-60",
+        "num_bv": "0060",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "9 RUE VILLIERS DE L ISLE ADAM",
+        "cp": "75020",
+        "lat": 48.86574407986279,
+        "lon": 2.3940498455723738
+      },
+      {
+        "objectid": 892,
+        "id_bv": "20-67",
+        "num_bv": "0067",
+        "lib": "GYMNASE BIDASSOA",
+        "adresse": "25 RUE DE LA BIDASSOA",
+        "cp": "75020",
+        "lat": 48.8664483736743,
+        "lon": 2.393189147058346
+      },
       {
         "objectid": 889,
         "id_bv": "20-64",
@@ -6480,16 +6502,6 @@
         "lon": 2.393113850464978
       },
       {
-        "objectid": 841,
-        "id_bv": "20-16",
-        "num_bv": "0016",
-        "lib": "ECOLE POLYVALENTE",
-        "adresse": "166 RUE PELLEPORT",
-        "cp": "75020",
-        "lat": 48.87336492903246,
-        "lon": 2.3979874548712226
-      },
-      {
         "objectid": 899,
         "id_bv": "20-74",
         "num_bv": "0074",
@@ -6570,9 +6582,7 @@
         "cp": "75020",
         "lat": 48.86814996702879,
         "lon": 2.3853632372952913
-      }
-    ],
-    [
+      },
       {
         "objectid": 896,
         "id_bv": "20-71",
@@ -6592,30 +6602,6 @@
         "cp": "75020",
         "lat": 48.866422279381,
         "lon": 2.3849235092569523
-      }
-    ]
-  ],
-  "75116": [
-    [
-      {
-        "objectid": 903,
-        "id_bv": "16-68",
-        "num_bv": "0068",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "56 RUE BOISSIERE",
-        "cp": "75116",
-        "lat": 48.868147079920114,
-        "lon": 2.2878880022459445
-      },
-      {
-        "objectid": 902,
-        "id_bv": "16-61",
-        "num_bv": "0061",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "54 RUE BOISSIERE",
-        "cp": "75116",
-        "lat": 48.86804861289959,
-        "lon": 2.288044151091974
       }
     ]
   ]

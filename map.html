@@ -155,6 +155,25 @@
       }
     }
 
+    function getGoogleMapsUrl(cluster) {
+      // Crée une URL Google Maps avec tous les points du trajet
+      const waypoints = cluster.map(pt => `${pt.adresse} ${pt.cp} Paris`);
+      if (waypoints.length < 2) return null;
+      
+      // Le premier point est l'origine, le dernier est la destination, les autres sont des waypoints
+      const origin = waypoints[0];
+      const destination = waypoints[waypoints.length - 1];
+      const waypointString = waypoints.slice(1, -1).join('|');
+      
+      let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=walking`;
+      
+      if (waypointString) {
+        url += `&waypoints=${waypointString}`;
+      }
+      
+      return url;
+    }
+
     function showCp(cp) {
       if (!clustersData || !clustersData[cp]) return;
       console.log(`Affichage du CP ${cp}`);
@@ -182,7 +201,10 @@
             fillOpacity: 0.9
           }).addTo(layerGroup);
 
-          marker.bindPopup(`<strong>${pt.lib}</strong><br>${pt.adresse}<br>Trajet ${trajIdx + 1} - Étape ${i + 1}`);
+          const googleMapsUrl = getGoogleMapsUrl(cluster);
+          const googleButton = googleMapsUrl ? `<br><a href="${googleMapsUrl}" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:#4285f4;color:white;text-decoration:none;border-radius:4px;font-size:12px;font-weight:bold;">📍 Voir trajet Google Maps</a>` : '';
+          
+          marker.bindPopup(`<strong>${pt.lib}</strong><br>${pt.adresse}<br>Trajet ${trajIdx + 1} - Étape ${i + 1}${googleButton}`);
         });
       });
 
