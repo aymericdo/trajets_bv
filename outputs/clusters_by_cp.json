@@ -1712,36 +1712,6 @@
         "cp": "75011",
         "lat": 48.86000303173066,
         "lon": 2.385842601850074
-      },
-      {
-        "objectid": 231,
-        "id_bv": "11-25",
-        "num_bv": "0025",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "1 RUE PIHET",
-        "cp": "75011",
-        "lat": 48.86345480386402,
-        "lon": 2.3738819799878037
-      },
-      {
-        "objectid": 232,
-        "id_bv": "11-26",
-        "num_bv": "0026",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "2 PASSAGE BESLAY",
-        "cp": "75011",
-        "lat": 48.863000850389795,
-        "lon": 2.3734671838205497
-      },
-      {
-        "objectid": 226,
-        "id_bv": "11-20",
-        "num_bv": "0020",
-        "lib": "COLLEGE BEAUMARCHAIS",
-        "adresse": "124 RUE AMELOT",
-        "cp": "75011",
-        "lat": 48.86423154834393,
-        "lon": 2.366905964139273
       }
     ],
     [
@@ -1794,16 +1764,6 @@
         "cp": "75011",
         "lat": 48.849852774912044,
         "lon": 2.3965004976339612
-      },
-      {
-        "objectid": 259,
-        "id_bv": "11-53",
-        "num_bv": "0053",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "16 RUE TITON",
-        "cp": "75011",
-        "lat": 48.85164128557418,
-        "lon": 2.386507358297096
       }
     ],
     [
@@ -1870,6 +1830,16 @@
     ],
     [
       {
+        "objectid": 215,
+        "id_bv": "11-9",
+        "num_bv": "0009",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "10 RUE KELLER",
+        "cp": "75011",
+        "lat": 48.85411493919266,
+        "lon": 2.3764735579205887
+      },
+      {
         "objectid": 214,
         "id_bv": "11-8",
         "num_bv": "0008",
@@ -1888,6 +1858,16 @@
         "cp": "75011",
         "lat": 48.85283097734751,
         "lon": 2.380793952957477
+      },
+      {
+        "objectid": 259,
+        "id_bv": "11-53",
+        "num_bv": "0053",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "16 RUE TITON",
+        "cp": "75011",
+        "lat": 48.85164128557418,
+        "lon": 2.386507358297096
       }
     ],
     [
@@ -1962,16 +1942,38 @@
         "cp": "75011",
         "lat": 48.86111049300105,
         "lon": 2.3701291855040862
+      }
+    ],
+    [
+      {
+        "objectid": 231,
+        "id_bv": "11-25",
+        "num_bv": "0025",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "1 RUE PIHET",
+        "cp": "75011",
+        "lat": 48.86345480386402,
+        "lon": 2.3738819799878037
       },
       {
-        "objectid": 215,
-        "id_bv": "11-9",
-        "num_bv": "0009",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "10 RUE KELLER",
+        "objectid": 232,
+        "id_bv": "11-26",
+        "num_bv": "0026",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "2 PASSAGE BESLAY",
         "cp": "75011",
-        "lat": 48.85411493919266,
-        "lon": 2.3764735579205887
+        "lat": 48.863000850389795,
+        "lon": 2.3734671838205497
+      },
+      {
+        "objectid": 226,
+        "id_bv": "11-20",
+        "num_bv": "0020",
+        "lib": "COLLEGE BEAUMARCHAIS",
+        "adresse": "124 RUE AMELOT",
+        "cp": "75011",
+        "lat": 48.86423154834393,
+        "lon": 2.366905964139273
       }
     ]
   ],

@@ -124,11 +124,11 @@
       // Update sidebar
       const sidebar = document.getElementById('sidebar');
       sidebar.innerHTML = clusters.map((cluster, idx) => {
-        const details = cluster.map(pt => `${pt.lib} (${pt.adresse})`).join(' → ');
+        const details = cluster.map(pt => `<li>${pt.adresse} (${pt.lib}) </li>`).join('');
         return `
           <div class="trajet-item">
             <div class="trajet-title">Trajet ${idx + 1}</div>
-            <div class="trajet-details">${details}</div>
+            <div class="trajet-details"><ul>${details}</ul></div>
           </div>
         `;
       }).join('');
