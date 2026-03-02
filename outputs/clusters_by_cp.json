@@ -1714,6 +1714,66 @@
         "cp": "75011",
         "lat": 48.86000303173066,
         "lon": 2.385842601850074
+      },
+      {
+        "objectid": 248,
+        "id_bv": "11-42",
+        "num_bv": "0042",
+        "lib": "COLLEGE ALAIN FOURNIER",
+        "adresse": "87 RUE LEON FROT",
+        "cp": "75011",
+        "lat": 48.858223283308,
+        "lon": 2.3838537410733744
+      },
+      {
+        "objectid": 209,
+        "id_bv": "11-3",
+        "num_bv": "0003",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "144 RUE DE LA ROQUETTE",
+        "cp": "75011",
+        "lat": 48.858074808008716,
+        "lon": 2.382302663453326
+      },
+      {
+        "objectid": 207,
+        "id_bv": "11-1",
+        "num_bv": "0001",
+        "lib": "MAIRIE D'ARRONDISSEMENT",
+        "adresse": "12 PLACE LEON BLUM",
+        "cp": "75011",
+        "lat": 48.85850095090393,
+        "lon": 2.379520865957035
+      },
+      {
+        "objectid": 208,
+        "id_bv": "11-2",
+        "num_bv": "0002",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "11BIS AVENUE PARMENTIER",
+        "cp": "75011",
+        "lat": 48.85975604210564,
+        "lon": 2.378800224295569
+      },
+      {
+        "objectid": 219,
+        "id_bv": "11-13",
+        "num_bv": "0013",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "9 RUE POPINCOURT",
+        "cp": "75011",
+        "lat": 48.85737906077341,
+        "lon": 2.377318738012324
+      },
+      {
+        "objectid": 210,
+        "id_bv": "11-4",
+        "num_bv": "0004",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "35 RUE GODEFROY CAVAIGNAC",
+        "cp": "75011",
+        "lat": 48.856080766436534,
+        "lon": 2.380494282678489
       }
     ],
     [
@@ -1766,90 +1826,16 @@
         "cp": "75011",
         "lat": 48.849852774912044,
         "lon": 2.3965004976339612
-      }
-    ],
-    [
-      {
-        "objectid": 209,
-        "id_bv": "11-3",
-        "num_bv": "0003",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "144 RUE DE LA ROQUETTE",
-        "cp": "75011",
-        "lat": 48.858074808008716,
-        "lon": 2.382302663453326
       },
       {
-        "objectid": 248,
-        "id_bv": "11-42",
-        "num_bv": "0042",
-        "lib": "COLLEGE ALAIN FOURNIER",
-        "adresse": "87 RUE LEON FROT",
-        "cp": "75011",
-        "lat": 48.858223283308,
-        "lon": 2.3838537410733744
-      },
-      {
-        "objectid": 207,
-        "id_bv": "11-1",
-        "num_bv": "0001",
-        "lib": "MAIRIE D'ARRONDISSEMENT",
-        "adresse": "12 PLACE LEON BLUM",
-        "cp": "75011",
-        "lat": 48.85850095090393,
-        "lon": 2.379520865957035
-      },
-      {
-        "objectid": 208,
-        "id_bv": "11-2",
-        "num_bv": "0002",
+        "objectid": 259,
+        "id_bv": "11-53",
+        "num_bv": "0053",
         "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "11BIS AVENUE PARMENTIER",
+        "adresse": "16 RUE TITON",
         "cp": "75011",
-        "lat": 48.85975604210564,
-        "lon": 2.378800224295569
-      },
-      {
-        "objectid": 219,
-        "id_bv": "11-13",
-        "num_bv": "0013",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "9 RUE POPINCOURT",
-        "cp": "75011",
-        "lat": 48.85737906077341,
-        "lon": 2.377318738012324
-      },
-      {
-        "objectid": 210,
-        "id_bv": "11-4",
-        "num_bv": "0004",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "35 RUE GODEFROY CAVAIGNAC",
-        "cp": "75011",
-        "lat": 48.856080766436534,
-        "lon": 2.380494282678489
-      }
-    ],
-    [
-      {
-        "objectid": 215,
-        "id_bv": "11-9",
-        "num_bv": "0009",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "10 RUE KELLER",
-        "cp": "75011",
-        "lat": 48.85411493919266,
-        "lon": 2.3764735579205887
-      },
-      {
-        "objectid": 214,
-        "id_bv": "11-8",
-        "num_bv": "0008",
-        "lib": "COLLEGE ANNE FRANCK",
-        "adresse": "38 RUE TROUSSEAU",
-        "cp": "75011",
-        "lat": 48.8519251413472,
-        "lon": 2.379036764951197
+        "lat": 48.85164128557418,
+        "lon": 2.386507358297096
       },
       {
         "objectid": 212,
@@ -1862,17 +1848,47 @@
         "lon": 2.380793952957477
       },
       {
-        "objectid": 259,
-        "id_bv": "11-53",
-        "num_bv": "0053",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "16 RUE TITON",
+        "objectid": 214,
+        "id_bv": "11-8",
+        "num_bv": "0008",
+        "lib": "COLLEGE ANNE FRANCK",
+        "adresse": "38 RUE TROUSSEAU",
         "cp": "75011",
-        "lat": 48.85164128557418,
-        "lon": 2.386507358297096
+        "lat": 48.8519251413472,
+        "lon": 2.379036764951197
+      },
+      {
+        "objectid": 215,
+        "id_bv": "11-9",
+        "num_bv": "0009",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "10 RUE KELLER",
+        "cp": "75011",
+        "lat": 48.85411493919266,
+        "lon": 2.3764735579205887
       }
     ],
     [
+      {
+        "objectid": 237,
+        "id_bv": "11-31",
+        "num_bv": "0031",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "77 BOULEVARD DE BELLEVILLE",
+        "cp": "75011",
+        "lat": 48.87127461428117,
+        "lon": 2.377434559280808
+      },
+      {
+        "objectid": 236,
+        "id_bv": "11-30",
+        "num_bv": "0030",
+        "lib": "GROUPE SCOLAIRE",
+        "adresse": "39 RUE DES TROIS BORNES",
+        "cp": "75011",
+        "lat": 48.86734855191597,
+        "lon": 2.374600993750192
+      },
       {
         "objectid": 233,
         "id_bv": "11-27",
@@ -1893,60 +1909,6 @@
         "lat": 48.86793495032688,
         "lon": 2.372385965616552
       },
-      {
-        "objectid": 236,
-        "id_bv": "11-30",
-        "num_bv": "0030",
-        "lib": "GROUPE SCOLAIRE",
-        "adresse": "39 RUE DES TROIS BORNES",
-        "cp": "75011",
-        "lat": 48.86734855191597,
-        "lon": 2.374600993750192
-      },
-      {
-        "objectid": 237,
-        "id_bv": "11-31",
-        "num_bv": "0031",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "77 BOULEVARD DE BELLEVILLE",
-        "cp": "75011",
-        "lat": 48.87127461428117,
-        "lon": 2.377434559280808
-      }
-    ],
-    [
-      {
-        "objectid": 220,
-        "id_bv": "11-14",
-        "num_bv": "0014",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "13 RUE FROMENT",
-        "cp": "75011",
-        "lat": 48.85741545977473,
-        "lon": 2.3724940809011987
-      },
-      {
-        "objectid": 221,
-        "id_bv": "11-15",
-        "num_bv": "0015",
-        "lib": "ECOLE MATERNELLE",
-        "adresse": "13 BOULEVARD RICHARD LENOIR",
-        "cp": "75011",
-        "lat": 48.856038819315586,
-        "lon": 2.3699973229807045
-      },
-      {
-        "objectid": 222,
-        "id_bv": "11-16",
-        "num_bv": "0016",
-        "lib": "ECOLE ELEMENTAIRE",
-        "adresse": "17 RUE ALPHONSE BAUDIN",
-        "cp": "75011",
-        "lat": 48.86111049300105,
-        "lon": 2.3701291855040862
-      }
-    ],
-    [
       {
         "objectid": 231,
         "id_bv": "11-25",
@@ -1976,6 +1938,36 @@
         "cp": "75011",
         "lat": 48.86423154834393,
         "lon": 2.366905964139273
+      },
+      {
+        "objectid": 222,
+        "id_bv": "11-16",
+        "num_bv": "0016",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "17 RUE ALPHONSE BAUDIN",
+        "cp": "75011",
+        "lat": 48.86111049300105,
+        "lon": 2.3701291855040862
+      },
+      {
+        "objectid": 220,
+        "id_bv": "11-14",
+        "num_bv": "0014",
+        "lib": "ECOLE ELEMENTAIRE",
+        "adresse": "13 RUE FROMENT",
+        "cp": "75011",
+        "lat": 48.85741545977473,
+        "lon": 2.3724940809011987
+      },
+      {
+        "objectid": 221,
+        "id_bv": "11-15",
+        "num_bv": "0015",
+        "lib": "ECOLE MATERNELLE",
+        "adresse": "13 BOULEVARD RICHARD LENOIR",
+        "cp": "75011",
+        "lat": 48.856038819315586,
+        "lon": 2.3699973229807045
       }
     ]
   ],
