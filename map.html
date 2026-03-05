@@ -25,6 +25,41 @@
     .trajet-details { font-size: 12px; color: #555; line-height: 1.5; word-break: break-word; }
     .error { color: #e74c3c; padding: 12px; background: #fadbd8; border-radius: 4px; margin: 12px; }
 
+    .state-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .v-btn {
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      transition: all 0.15s ease;
+    }
+
+    .v-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .v-btn.ok {
+      background: #2ecc71;
+    }
+
+    .v-btn.degraded {
+      background: #f39c12;
+    }
+
+    .v-btn.down {
+      background: #e74c3c;
+    }
+
     /* Mobile fullscreen / toggle behaviour */
     .mobile-toggle { display: none; }
     @media (max-width: 768px) {
@@ -77,181 +112,282 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    let clustersData = null;
-    let map = null;
-    let layerGroup = null;
-    const colors = ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#a65628'];
+  let clustersData = null;
+  let map = null;
+  let layerGroup = null;
+  const colors = ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#a65628'];
+  const displayLabel = {
+    'ok': "OK",
+    'degraded': "Dégradé",
+    'down': "Down",
+    'undefined': "Non défini"
+  }
 
-    // Mobile helpers
-    function isMobile() { return window.matchMedia && window.matchMedia('(max-width: 768px)').matches; }
+  const displayLabelEmoji = {
+    'ok': "🟢",
+    'degraded': "🟠",
+    'down': "🔴",
+    'undefined': "🔵"
+  }
 
-    function syncMobileButtons() {
-      const showList = document.getElementById('showListBtn');
-      const showMap = document.getElementById('showMapBtn');
-      if (!showList || !showMap) return;
-      if (isMobile()) {
-        if (!document.body.classList.contains('mobile-list')) {
-          showList.style.display = 'inline-block';
-          showMap.style.display = 'none';
-        } else {
-          showList.style.display = 'none';
-          showMap.style.display = 'inline-block';
-        }
+  const PB_BASE = "https://municimap.aymericdo.ovh/admin/api";
+  const COLLECTION = "pbc_2621269640";
+  const stateCache = {};
+
+  // 🎨 Couleurs selon état
+  function getColorForState(state, fallbackColor) {
+    if (!state) return fallbackColor;
+    switch (state) {
+      case "ok": return "#2ecc71";
+      case "degraded": return "#f39c12";
+      case "down": return "#e74c3c";
+      default: return fallbackColor;
+    }
+  }
+
+  async function getBureauStateFromPostalCode(postalCode) {
+    const url = `${PB_BASE}/collections/${COLLECTION}/records?filter=postal_code="${postalCode}"`;
+    const resp = await fetch(url);
+    const data = await resp.json();
+
+    if (data.items.length) {
+      data.items.forEach((item) => {
+        stateCache[item.id_bv] = item;
+      });
+      return data.items;
+    }
+    return null;
+  }
+  
+  async function getBureauState(id_bv) {
+    if (stateCache[id_bv]) return stateCache[id_bv];
+
+    const url = `${PB_BASE}/collections/${COLLECTION}/records?filter=id_bv="${id_bv}"`;
+    const resp = await fetch(url);
+    const data = await resp.json();
+
+    if (data.items.length) {
+      stateCache[id_bv] = data.items[0];
+      return data.items[0];
+    }
+    return null;
+  }
+
+  async function upsertBureauState(cp, id_bv, newState) {
+    const existing = await getBureauState(id_bv);
+
+    if (!existing) {
+      const resp = await fetch(`${PB_BASE}/collections/${COLLECTION}/records`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id_bv, state: newState, postal_code: cp })
+      });
+      const created = await resp.json();
+      stateCache[id_bv] = created;
+      return created;
+    } else {
+      const resp = await fetch(`${PB_BASE}/collections/${COLLECTION}/records/${existing.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ state: newState, postal_code: cp })
+      });
+      const updated = await resp.json();
+      stateCache[id_bv] = updated;
+      return updated;
+    }
+  }
+
+  // Mobile helpers
+  function isMobile() { return window.matchMedia && window.matchMedia('(max-width: 768px)').matches; }
+
+  function syncMobileButtons() {
+    const showList = document.getElementById('showListBtn');
+    const showMap = document.getElementById('showMapBtn');
+    if (!showList || !showMap) return;
+    if (isMobile()) {
+      if (!document.body.classList.contains('mobile-list')) {
+        showList.style.display = 'inline-block';
+        showMap.style.display = 'none';
       } else {
         showList.style.display = 'none';
-        showMap.style.display = 'none';
-        document.body.classList.remove('mobile-list');
+        showMap.style.display = 'inline-block';
       }
+    } else {
+      showList.style.display = 'none';
+      showMap.style.display = 'none';
+      document.body.classList.remove('mobile-list');
     }
+  }
 
-    window.addEventListener('resize', syncMobileButtons);
+  window.addEventListener('resize', syncMobileButtons);
 
-    // Toggle events
-    document.addEventListener('click', (e) => {
-      if (e.target && e.target.id === 'showListBtn') {
-        document.body.classList.add('mobile-list');
-        syncMobileButtons();
-      } else if (e.target && e.target.id === 'showMapBtn') {
-        document.body.classList.remove('mobile-list');
-        syncMobileButtons();
+  document.addEventListener('click', (e) => {
+    if (e.target && e.target.id === 'showListBtn') {
+      document.body.classList.add('mobile-list');
+      syncMobileButtons();
+    } else if (e.target && e.target.id === 'showMapBtn') {
+      document.body.classList.remove('mobile-list');
+      syncMobileButtons();
+    }
+  });
+
+  async function loadData() {
+    try {
+      const resp = await fetch('outputs/clusters_by_cp.json');
+      clustersData = await resp.json();
+      populateSelect();
+
+      // Get CP from URL params AFTER loading data
+      const params = new URLSearchParams(window.location.search);
+      const cpFromUrl = params.get('cp');
+      if (cpFromUrl && clustersData[cpFromUrl]) {
+        document.getElementById('cpSelect').value = cpFromUrl;
+        await showCp(cpFromUrl);
       }
+    } catch (err) {
+      document.getElementById('sidebar').innerHTML =
+        `<div class="error">Erreur: ${err.message}</div>`;
+    }
+  }
+
+  function populateSelect() {
+    const select = document.getElementById('cpSelect');
+    select.innerHTML = '';
+    const cps = Object.keys(clustersData || {}).sort();
+    cps.forEach(cp => {
+      const opt = document.createElement('option');
+      opt.value = cp;
+      opt.textContent = cp;
+      select.appendChild(opt);
     });
+  }
 
-    async function loadData() {
-      try {
-        console.log('Chargement des clusters...');
-        const resp = await fetch('outputs/clusters_by_cp.json');
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        clustersData = await resp.json();
-        console.log('Clusters chargés:', Object.keys(clustersData).length, 'CP');
-        populateSelect();
-        
-        // Get CP from URL params AFTER loading data
-        const params = new URLSearchParams(window.location.search);
-        const cpFromUrl = params.get('cp');
-        if (cpFromUrl && clustersData[cpFromUrl]) {
-          document.getElementById('cpSelect').value = cpFromUrl;
-          showCp(cpFromUrl);
-        }
-        syncMobileButtons();
-      } catch (err) {
-        console.error('Erreur:', err);
-        document.getElementById('sidebar').innerHTML = `<div class="error">Erreur: ${err.message}</div>`;
-      }
-    }
+  function getGoogleMapsUrl(cluster) {
+    const waypoints = cluster.map(pt => `${pt.adresse} ${pt.cp} Paris`);
+    if (waypoints.length < 2) return null;
+    const origin = waypoints[0];
+    const destination = waypoints[waypoints.length - 1];
+    const waypointString = waypoints.slice(1, -1).join('|');
+    let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=walking`;
+    if (waypointString) url += `&waypoints=${waypointString}`;
+    return url;
+  }
 
-    function populateSelect() {
-      const select = document.getElementById('cpSelect');
-      select.innerHTML = '';
-      const cps = Object.keys(clustersData || {}).sort();
-      cps.forEach(cp => {
-        const opt = document.createElement('option');
-        opt.value = cp;
-        opt.textContent = cp;
-        select.appendChild(opt);
-      });
-      if (cps.length > 0) {
-        select.value = cps[0];
-        showCp(cps[0]);
-      }
-    }
+  async function showCp(cp) {
+    if (!clustersData || !clustersData[cp]) return;
 
-    function getGoogleMapsUrl(cluster) {
-      // Crée une URL Google Maps avec tous les points du trajet
-      const waypoints = cluster.map(pt => `${pt.adresse} ${pt.cp} Paris`);
-      if (waypoints.length < 2) return null;
-      
-      // Le premier point est l'origine, le dernier est la destination, les autres sont des waypoints
-      const origin = waypoints[0];
-      const destination = waypoints[waypoints.length - 1];
-      const waypointString = waypoints.slice(1, -1).join('|');
-      
-      let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=walking`;
-      
-      if (waypointString) {
-        url += `&waypoints=${waypointString}`;
-      }
-      
-      return url;
-    }
+    layerGroup.clearLayers();
+    const clusters = clustersData[cp];
+    const bounds = [];
+    let trajIdx = 0;
+    const allBureauState = await getBureauStateFromPostalCode(cp)
 
-    function showCp(cp) {
-      if (!clustersData || !clustersData[cp]) return;
-      console.log(`Affichage du CP ${cp}`);
+    for (const cluster of clusters) {
+      const latlngs = cluster.map(pt => [pt.lat, pt.lon]);
+      const color = colors[trajIdx % colors.length];
+      L.polyline(latlngs, { color, weight: 3, opacity: 0.8 }).addTo(layerGroup);
 
-      layerGroup.clearLayers();
-      const clusters = clustersData[cp];
-      const bounds = [];
+      for (const pt of cluster) {
+        bounds.push([pt.lat, pt.lon]);
 
-      clusters.forEach((cluster, trajIdx) => {
-        const latlngs = cluster.map(pt => [pt.lat, pt.lon]);
-        latlngs.forEach(l => bounds.push(l));
+        const record = allBureauState?.find((record) => record.id_bv === pt.id_bv);
+        const state = record ? record.state : null;
 
-        const color = colors[trajIdx % colors.length];
+        const marker = L.circleMarker([pt.lat, pt.lon], {
+          radius: 6,
+          fillColor: getColorForState(state, "#3498db"),
+          color: '#fff',
+          weight: 2,
+          fillOpacity: 0.9
+        }).addTo(layerGroup);
 
-        // Polyline
-        L.polyline(latlngs, { color, weight: 3, opacity: 0.8 }).addTo(layerGroup);
-
-        // Markers
-        cluster.forEach((pt, i) => {
-          const marker = L.circleMarker([pt.lat, pt.lon], {
-            radius: 6,
-            fillColor: color,
-            color: '#fff',
-            weight: 2,
-            fillOpacity: 0.9
-          }).addTo(layerGroup);
+        marker.on("click", async () => {
+          const record = await getBureauState(pt.id_bv);
+          const state = record ? record.state : "undefined";
 
           const googleMapsUrl = getGoogleMapsUrl(cluster);
-          const googleButton = googleMapsUrl ? `<br><a href="${googleMapsUrl}" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:#4285f4;color:white;text-decoration:none;border-radius:4px;font-size:12px;font-weight:bold;">📍 Voir trajet Google Maps</a>` : '';
-          
-          marker.bindPopup(`<strong>${pt.lib}</strong><br>${pt.adresse}<br>Trajet ${trajIdx + 1} - Étape ${i + 1}${googleButton}`);
-        });
-      });
+          const googleButton = googleMapsUrl
+            ? `<br><a href="${googleMapsUrl}" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:#4285f4;color:white;text-decoration:none;border-radius:4px;font-size:12px;font-weight:bold;">📍 Voir trajet Google Maps</a>`
+            : '';
 
-      if (bounds.length) {
-        map.fitBounds(bounds, { padding: [50, 50] });
+          const popupContent = `
+            <strong>${pt.lib}</strong><br>
+            ${pt.adresse}<br><br>
+            État actuel : <b id="state-${pt.id_bv}">${displayLabel[state]}</b><br><br>
+            <div class="state-buttons">
+              <button class="v-btn ok" onclick="changeState('${pt.cp}','${pt.id_bv}','ok')">
+                ${displayLabel['ok']}
+              </button>
+
+              <button class="v-btn degraded" onclick="changeState('${pt.cp}','${pt.id_bv}','degraded')">
+                ${displayLabel['degraded']}
+              </button>
+
+              <button class="v-btn down" onclick="changeState('${pt.cp}','${pt.id_bv}','down')">
+                ${displayLabel['down']}
+              </button>
+            </div>
+            ${googleButton}
+          `;
+
+          marker.bindPopup(popupContent).openPopup();
+        });
+
+        window.changeState = async (cp, id_bv, newState) => {
+          await upsertBureauState(cp, id_bv, newState);
+          marker.setStyle({ fillColor: getColorForState(newState, "#3498db") });
+          const stateLabel = document.getElementById(`state-${id_bv}`);
+          if (stateLabel) {
+            stateLabel.innerText = displayLabel[newState];
+          }
+        };
       }
 
-      // Update sidebar
-      const sidebar = document.getElementById('sidebar');
-      sidebar.innerHTML = clusters.map((cluster, idx) => {
-        const details = cluster.map(pt => `<li>${pt.adresse} (${pt.lib}) </li>`).join('');
-        const googleMapsUrl = getGoogleMapsUrl(cluster);
-        const googleButton = googleMapsUrl ? `<a href="${googleMapsUrl}" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:#4285f4;color:white;text-decoration:none;border-radius:4px;font-size:12px;font-weight:bold;text-align:center;">📍 Voir trajet Google Maps</a>` : '';
-        return `
-          <div class="trajet-item">
-            <div class="trajet-title">Trajet ${idx + 1}</div>
-            <div class="trajet-details"><ul>${details}</ul></div>
-            ${googleButton}
-          </div>
-        `;
-      }).join('');
+      trajIdx += 1;
     }
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('Initialisation de la carte...');
-      map = L.map('map').setView([48.8566, 2.3522], 12);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-      }).addTo(map);
-      layerGroup = L.layerGroup().addTo(map);
+    if (bounds.length) {
+      map.fitBounds(bounds, { padding: [50, 50] });
+    }
 
-      document.getElementById('cpSelect').addEventListener('change', (e) => {
-        const cp = e.target.value;
-        showCp(cp);
-        window.history.pushState({}, '', `?cp=${cp}`);
-      });
+    const sidebar = document.getElementById('sidebar');
+    sidebar.innerHTML = clusters.map((cluster, idx) => {
+      const details = cluster.map(pt => `<li>${displayLabelEmoji[stateCache[pt.id_bv]?.state]} ${pt.adresse} (${pt.lib})</li>`).join('');
+      const googleMapsUrl = getGoogleMapsUrl(cluster);
+      const googleButton = googleMapsUrl
+        ? `<a href="${googleMapsUrl}" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:#4285f4;color:white;text-decoration:none;border-radius:4px;font-size:12px;font-weight:bold;text-align:center;">📍 Voir trajet Google Maps</a>`
+        : '';
+      return `
+        <div class="trajet-item">
+          <div class="trajet-title">Trajet ${idx + 1}</div>
+          <div class="trajet-details"><ul>${details}</ul></div>
+          ${googleButton}
+        </div>
+      `;
+    }).join('');
+  }
 
-      document.getElementById('fitBtn').addEventListener('click', () => {
-        showCp(document.getElementById('cpSelect').value);
-      });
+  document.addEventListener('DOMContentLoaded', () => {
+    map = L.map('map').setView([48.8566, 2.3522], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+    layerGroup = L.layerGroup().addTo(map);
 
-      loadData();
-      syncMobileButtons();
+    document.getElementById('cpSelect').addEventListener('change', (e) => {
+      const cp = e.target.value;
+      showCp(cp);
+      window.history.pushState({}, '', `?cp=${cp}`);
     });
-  </script>
+
+    document.getElementById('fitBtn').addEventListener('click', () => {
+      showCp(document.getElementById('cpSelect').value);
+    });
+
+    loadData();
+    syncMobileButtons();
+  });
+</script>
 </body>
 </html>
