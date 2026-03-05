@@ -28,7 +28,8 @@
     .state-buttons {
       display: flex;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 24px;
+      justify-content: space-between;
     }
 
     .v-btn {
@@ -58,6 +59,29 @@
 
     .v-btn.down {
       background: #e74c3c;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      min-width: 260px;
+      max-width: 80%;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
 
     /* Mobile fullscreen / toggle behaviour */
@@ -107,6 +131,22 @@
     <div class="mobile-toggle" aria-hidden="true">
       <button id="showListBtn" class="mobile-btn" title="Voir la liste des trajets">📋 Liste</button>
       <button id="showMapBtn" class="mobile-btn secondary" style="display:none" title="Retour à la carte">🗺️ Carte</button>
+    </div>
+  </div>
+
+  <div id="stateModal" class="modal">
+    <div class="modal-content">
+
+    <div id="modalTitle" style="font-weight:bold;margin-bottom:10px"></div>
+
+    <div class="state-buttons">
+      <button class="v-btn ok" id="modalOk">OK</button>
+      <button class="v-btn degraded" id="modalDegraded">Dégradé</button>
+      <button class="v-btn down" id="modalDown">Down</button>
+    </div>
+
+    <button id="modalClose" class="v-btn" style="margin-top:28px;background: #2c3e50;float: right;">Fermer</button>
+
     </div>
   </div>
 
@@ -230,6 +270,23 @@
       syncMobileButtons();
     }
   });
+  
+  document.getElementById("modalClose").onclick=()=>{
+    document.getElementById("stateModal").classList.remove("show")
+  }
+
+  document.getElementById("modalOk").onclick=()=>updateModalState("ok")
+  document.getElementById("modalDegraded").onclick=()=>updateModalState("degraded")
+  document.getElementById("modalDown").onclick=()=>updateModalState("down")
+
+  async function updateModalState(state) {
+    await upsertBureauState(modalCp, modalBv, state);
+
+    document.getElementById("stateModal").classList.remove("show");
+
+    // recharge la vue
+    showCp(modalCp);
+  }
 
   async function loadData() {
     try {
@@ -260,6 +317,14 @@
       opt.textContent = cp;
       select.appendChild(opt);
     });
+  }
+
+  function openStateModal(cp,id_bv,lib){
+    modalCp=cp
+    modalBv=id_bv
+
+    document.getElementById("modalTitle").innerText=lib
+    document.getElementById("stateModal").classList.add("show")
   }
 
   function getGoogleMapsUrl(cluster) {
@@ -352,7 +417,12 @@
 
     const sidebar = document.getElementById('sidebar');
     sidebar.innerHTML = clusters.map((cluster, idx) => {
-      const details = cluster.map(pt => `<li>${displayLabelEmoji[stateCache[pt.id_bv]?.state]} ${pt.adresse} (${pt.lib})</li>`).join('');
+      const details = cluster.map(pt =>
+        `<li style="cursor:pointer"
+            onclick="openStateModal('${pt.cp}','${pt.id_bv}','${pt.lib}')">
+            ${displayLabelEmoji[stateCache[pt.id_bv]?.state]} ${pt.adresse} (${pt.lib})
+        </li>`
+      ).join('');
       const googleMapsUrl = getGoogleMapsUrl(cluster);
       const googleButton = googleMapsUrl
         ? `<a href="${googleMapsUrl}" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:#4285f4;color:white;text-decoration:none;border-radius:4px;font-size:12px;font-weight:bold;text-align:center;">📍 Voir trajet Google Maps</a>`
