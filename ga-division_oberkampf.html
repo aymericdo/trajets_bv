@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>GA Division HLM</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  #map {
+    height: 100vh;
+    width: 100%;
+  }
+  #ui {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    padding: 10px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    font-size: 14px;
+    line-height: 1.5;
+    min-width: 240px;
+  }
+  #ui select, #ui button {
+    width: 100%;
+    padding: 6px 8px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+  }
+  #ui button {
+    cursor: pointer;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+  }
+  .legend-color {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    border-radius: 4px;
+    border: 1px solid #999;
+  }
+  #message {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #444;
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div id="ui">
+  <strong>Répartition HLM</strong>
+  <div style="margin-top: 10px;">Nombre de zones :</div>
+  <select id="zoneCount">
+    <option value="3">3 zones</option>
+    <option value="4">4 zones</option>
+    <option value="5">5 zones</option>
+  </select>
+  <button id="updateBtn">Mettre à jour</button>
+  <div id="summary"></div>
+  <div id="message">Chargement de HLM.csv…</div>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map = L.map('map').setView([48.859741, 2.3806999], 14);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap'
+}).addTo(map);
+
+const zoneColors = ['#1f78b4', '#33a02c', '#e31a1c', '#ff7f00', '#6a3d9a'];
+const pointLayer = L.layerGroup().addTo(map);
+const zoneLayer = L.layerGroup().addTo(map);
+const labelLayer = L.layerGroup().addTo(map);
+let hlmPoints = [];
+
+function parseCSV(text, delimiter = ';') {
+  const rows = [];
+  let current = '';
+  let row = [];
+  let inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if (inQuotes) {
+      if (char === '"') {
+        if (text[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        current += char;
+      }
+    } else {
+      if (char === '"') {
+        inQuotes = true;
+      } else if (char === delimiter) {
+        row.push(current);
+        current = '';
+      } else if (char === '\r') {
+        continue;
+      } else if (char === '\n') {
+        row.push(current);
+        rows.push(row);
+        row = [];
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+  }
+  if (current !== '' || row.length > 0) {
+    row.push(current);
+    rows.push(row);
+  }
+  return rows;
+}
+
+function parsePointField(value) {
+  if (!value) return null;
+  try {
+    return JSON.parse(value);
+  } catch (err) {
+    try {
+      return JSON.parse(value.replace(/""/g, '"'));
+    } catch (err2) {
+      return null;
+    }
+  }
+}
+
+async function geocodeAddress(address, city = "Paris") {
+  const query = encodeURIComponent(`${address} ${city}`);
+  const url = `https://data.geopf.fr/geocodage/completion/?text=${query}&type=StreetAddress&maximumResponses=1`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const result = data?.results?.[0];
+
+    if (!result) return null;
+
+    return {
+      lon: result.x,
+      lat: result.y,
+      label: result.fulltext,
+    };
+  } catch (err) {
+    console.error("Erreur géocodage:", address, err);
+    return null;
+  }
+}
+
+async function fetchAllHLM(codePostal = "75011") {
+  const limit = 100;
+  let offset = 0;
+  let allResults = [];
+  let total = Infinity;
+
+  while (offset < total) {
+    const url = `https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/logements-sociaux-finances-a-paris/records?where=code_postal="${codePostal}"&limit=${limit}&offset=${offset}`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    total = data.total_count;
+    allResults.push(...data.results);
+
+    offset += limit;
+  }
+
+  return allResults;
+}
+
+async function loadHLM(codePostal = "75011") {
+  const hlmData = await fetchAllHLM(codePostal);
+
+  const addresses = [
+    "3, RUE GUILLAUME BERTRAND",
+    "18-20 RUE DE LA FORGE ROYALE",
+    "LOTS A ET B  49-51 LEON FROT (ATELIERS)",
+    "9, RUE AUGUSTE LAURENT"
+  ];
+
+  const hlmPointsTemp = await Promise.all(
+    hlmData.map(async (item) => {
+      let lon = item.geo_point_2d?.lon ?? item.geo_shape?.geometry?.coordinates?.[0];
+      let lat = item.geo_point_2d?.lat ?? item.geo_shape?.geometry?.coordinates?.[1];
+
+      const total = item.nb_logmt_total || 0;
+      const address = item.adresse_programme || '';
+
+      // 👉 Si coordonnées absentes ou suspectes → géocodage
+      if (addresses.includes(address)) {
+        console.log(address)
+        const geo = await geocodeAddress(address);
+
+        if (geo) {
+          lon = geo.lon;
+          lat = geo.lat;
+        }
+      }
+
+      return {
+        lon,
+        lat,
+        total,
+        address,
+        year: item.annee || '',
+        type: item.nature_programme || '',
+        arrondissement: item.arrdt || ''
+      };
+    })
+  );
+
+  const filtered = hlmPointsTemp.filter(
+    p => p.lon != null && p.lat != null && p.total > 0
+  );
+
+  if (!filtered.length) {
+    throw new Error('Aucune donnée HLM valide trouvée');
+  }
+
+  hlmPoints = filtered;
+}
+
+function computeNormalAxis(points) {
+  // Rue Oberkampf
+  const startLat = 48.863726;
+  const startLon = 2.366352;
+  const endLat = 48.867003;
+  const endLon = 2.382845;
+  
+  const dx = endLon - startLon;
+  const dy = endLat - startLat;
+  
+  // Vecteur normal (perpendiculaire)
+  // En 2D, pour un vecteur (dx, dy), le perpendiculaire est (-dy, dx)
+  const nx = -dy;
+  const ny = dx;
+  
+  // Normaliser
+  const length = Math.sqrt(nx * nx + ny * ny);
+  
+  return { x: nx / length, y: ny / length };
+}
+
+function assignZones(points, numZones) {
+  // On utilise désormais l'axe normal pour le tri
+  const axis = computeNormalAxis(points);
+  
+  // Le tri se fait maintenant selon la projection sur l'axe perpendiculaire
+  const sorted = [...points].sort((a, b) => 
+    (a.lon * axis.x + a.lat * axis.y) - (b.lon * axis.x + b.lat * axis.y)
+  );
+  
+  const totalWeight = sorted.reduce((sum, item) => sum + item.total, 0);
+  const target = totalWeight / numZones;
+  const zones = Array.from({ length: numZones }, () => ({ items: [], weight: 0 }));
+  let current = 0;
+
+  for (const item of sorted) {
+    // Si la zone est déjà bien remplie, on passe à la suivante
+    // (on garde la condition 'current < numZones - 1' pour éviter de dépasser l'index)
+    if (current < numZones - 1 && zones[current].weight >= target && zones[current].items.length > 0) {
+      current += 1;
+    }
+    zones[current].items.push(item);
+    zones[current].weight += item.total;
+  }
+  return zones;
+}
+
+function convexHull(points) {
+  if (points.length <= 1) return points;
+  const pts = points.slice().sort((a, b) => a[0] === b[0] ? a[1] - b[1] : a[0] - b[0]);
+  const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const lower = [];
+  for (const p of pts) {
+    while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], p) <= 0) lower.pop();
+    lower.push(p);
+  }
+  const upper = [];
+  for (let i = pts.length - 1; i >= 0; i--) {
+    const p = pts[i];
+    while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], p) <= 0) upper.pop();
+    upper.push(p);
+  }
+  upper.pop();
+  lower.pop();
+  return lower.concat(upper);
+}
+
+function drawZones(numZones) {
+  pointLayer.clearLayers();
+  zoneLayer.clearLayers();
+  labelLayer.clearLayers();
+
+  const zones = assignZones(hlmPoints, numZones);
+  const summaryLines = [];
+
+  zones.forEach((zone, idx) => {
+    const coords = zone.items.map(item => [item.lat, item.lon]);
+    if (coords.length >= 3) {
+      const hull = convexHull(coords.map(([lat, lon]) => [lon, lat]));
+      const hullLatLng = hull.map(([lon, lat]) => [lat, lon]);
+      L.polygon(hullLatLng, {
+        color: zoneColors[idx],
+        fillColor: zoneColors[idx],
+        fillOpacity: 0.18,
+        weight: 2
+      }).addTo(zoneLayer);
+    } else if (coords.length === 2) {
+      L.polyline(coords, { color: zoneColors[idx], weight: 3 }).addTo(zoneLayer);
+    }
+
+    const centroid = {
+      lat: zone.items.reduce((sum, item) => sum + item.lat * item.total, 0) / Math.max(zone.weight, 1),
+      lon: zone.items.reduce((sum, item) => sum + item.lon * item.total, 0) / Math.max(zone.weight, 1)
+    };
+
+    L.circleMarker([centroid.lat, centroid.lon], {
+      radius: 8,
+      fillColor: zoneColors[idx],
+      color: '#333',
+      weight: 1,
+      fillOpacity: 1
+    }).bindPopup(`<strong>Zone ${idx + 1}</strong><br>Logements financés : ${zone.weight.toFixed(0)}`).addTo(labelLayer);
+
+    zone.items.forEach(item => {
+      L.circleMarker([item.lat, item.lon], {
+        radius: 5,
+        fillColor: zoneColors[idx],
+        color: '#fff',
+        weight: 1,
+        fillOpacity: 0.9
+      }).bindPopup(`
+        <strong>${item.address}</strong><br>
+        Arrondissement : ${item.arrondissement}<br>
+        Total logements : ${item.total.toFixed(0)}<br>
+        Année : ${item.year}<br>
+        Nature : ${item.type}<br>
+        Zone : ${idx + 1}
+      `).addTo(pointLayer);
+    });
+
+    summaryLines.push(`
+      <div class="legend-item">
+        <span class="legend-color" style="background:${zoneColors[idx]};"></span>
+        Zone ${idx + 1} : ${zone.weight.toFixed(0)} logts • ${zone.items.length} point(s)
+      </div>
+    `);
+  });
+
+  document.getElementById('summary').innerHTML = '<div style="margin-top:10px;"><strong>Zones créées :</strong></div>' + summaryLines.join('');
+}
+
+function setMessage(text, isError = false) {
+  const elem = document.getElementById('message');
+  elem.textContent = text;
+  elem.style.color = isError ? '#b00' : '#444';
+}
+
+document.getElementById('updateBtn').addEventListener('click', () => {
+  const count = parseInt(document.getElementById('zoneCount').value, 10);
+  drawZones(count);
+});
+
+loadHLM().then(() => {  
+  setMessage('Données HLM chargées.');
+  drawZones(parseInt(document.getElementById('zoneCount').value, 10));
+}).catch(err => {
+  console.error(err);
+  setMessage('Erreur lors du chargement des données HLM.', true);
+});
+</script>
+</body>
+</html>
