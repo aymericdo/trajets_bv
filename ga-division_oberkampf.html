@@ -373,6 +373,8 @@ function setMessage(text, isError = false) {
   elem.style.color = isError ? '#b00' : '#444';
 }
 
+document.getElementById('zoneCount').value = '4'; // Valeur par défaut
+
 document.getElementById('updateBtn').addEventListener('click', () => {
   const count = parseInt(document.getElementById('zoneCount').value, 10);
   drawZones(count);
@@ -380,7 +382,7 @@ document.getElementById('updateBtn').addEventListener('click', () => {
 
 loadHLM().then(() => {  
   setMessage('Données HLM chargées.');
-  drawZones(4);
+  drawZones(parseInt(document.getElementById('zoneCount').value, 10));
 }).catch(err => {
   console.error(err);
   setMessage('Erreur lors du chargement des données HLM.', true);
