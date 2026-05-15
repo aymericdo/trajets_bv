@@ -380,7 +380,7 @@ document.getElementById('updateBtn').addEventListener('click', () => {
 
 loadHLM().then(() => {  
   setMessage('Données HLM chargées.');
-  drawZones(parseInt(document.getElementById('zoneCount').value, 10));
+  drawZones(4);
 }).catch(err => {
   console.error(err);
   setMessage('Erreur lors du chargement des données HLM.', true);
